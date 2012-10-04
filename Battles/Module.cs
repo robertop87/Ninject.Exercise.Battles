@@ -3,6 +3,7 @@
     using Battles.Log;
     using Battles.UI;
 
+    using Ninject.Extensions.Factory;
     using Ninject.Modules;
 
     public class Module : NinjectModule
@@ -13,7 +14,10 @@
         public override void Load()
         {
             this.Kernel.Bind<ILogService>().To<LogService>().InSingletonScope();
-            this.Kernel.Bind<IWarriorFactory>().To<WarriorFactory>().InSingletonScope();
+            
+            this.Kernel.Bind<IWeapon>().To<Sword>();
+            this.Kernel.Bind<IWarrior>().To<Ninja>();
+            this.Kernel.Bind<IWarriorFactory>().ToFactory();
 
             this.Kernel.Bind<IFightEngine>().To<FightEngine>();
             this.Kernel.Bind<IBattleEngine>().To<BattleEngine>()
