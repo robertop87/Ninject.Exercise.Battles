@@ -10,9 +10,9 @@
         private readonly Random random = new Random();
         private readonly ILogService logger;
 
-        public FightEngine()
+        public FightEngine(ILogService logger)
         {
-            this.logger = LogService.Logger;
+            this.logger = logger;
         }
 
         public event EventHandler<EventArgs<string>> FightEvent;

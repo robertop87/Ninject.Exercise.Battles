@@ -9,8 +9,8 @@
 
     public class BattleEngine : IBattleEngine
     {
-        private const int RedArmySize = 20;
-        private const int BlueArmySize = 23;
+        private readonly int redArmySize;
+        private readonly int blueArmySize;
         
         private readonly IFightEngine fightEngine;
         private readonly ILogService logger;
@@ -19,11 +19,13 @@
         private IEnumerable<IWarrior> redArmy;
         private IEnumerable<IWarrior> blueArmy;
 
-        public BattleEngine()
+        public BattleEngine(IFightEngine engine, IWarriorFactory warriorFactory, ILogService logger, int redArmySize, int blueArmySize)
         {
-            this.fightEngine = new FightEngine();
-            this.logger = LogService.Logger;
-            this.factory = new WarriorFactory();
+            this.fightEngine = engine;
+            this.factory = warriorFactory;
+            this.logger = logger;
+            this.redArmySize = redArmySize;
+            this.blueArmySize = blueArmySize;
 
             this.fightEngine.FightEvent += this.HandleFightEvent;
         }
@@ -34,8 +36,8 @@
         {
             this.Log("Armies are preparing");
             
-            this.redArmy = this.CreateArmy("Red", RedArmySize);
-            this.blueArmy = this.CreateArmy("Blue", BlueArmySize);
+            this.redArmy = this.CreateArmy("Red", this.redArmySize);
+            this.blueArmy = this.CreateArmy("Blue", this.blueArmySize);
             
             this.Log("Armies are ready to fight");
         }

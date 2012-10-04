@@ -7,13 +7,10 @@
         private readonly IGuiPresenter guiPresenter;
         private readonly ILogPresenter logPresenter;
 
-        public BattleApplication()
+        public BattleApplication(IGuiPresenter guiPresenter, ILogPresenter logPresenter)
         {
-            this.guiPresenter = new GuiPresenter();
-            this.guiPresenter.Initialize();
-
-            this.logPresenter = new LogPresenter();
-            this.logPresenter.Initialize();
+            this.guiPresenter = guiPresenter;
+            this.logPresenter = logPresenter;
         }
 
         public void Start()

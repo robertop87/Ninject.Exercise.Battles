@@ -7,10 +7,10 @@
         private readonly IView view;
         private readonly IBattleEngine battle;
 
-        public GuiPresenter()
+        public GuiPresenter(IView guiView, IBattleEngine battleEngine)
         {
-            this.view = new GuiView();
-            this.battle = new BattleEngine();
+            this.view = guiView;
+            this.battle = battleEngine;
         }
 
         public void Initialize()

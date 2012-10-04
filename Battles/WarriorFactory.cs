@@ -4,7 +4,7 @@ namespace Battles
     {
         public IWarrior CreateWarrior(string faction, int id)
         {
-            return new Ninja(faction, id);
+            return new Ninja(faction, id, new Sword());
         }
     }
 }
