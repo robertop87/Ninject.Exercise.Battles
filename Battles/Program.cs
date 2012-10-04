@@ -2,34 +2,26 @@
 {
     using System;
 
-    using Battles.Log;
-    using Battles.UI;
+    using Ninject;
+    using Ninject.Modules;
 
     public class Program
     {
         public static void Main(string[] args)
         {
-            const int RedArmySize = 20;
-            const int BlueArmySize = 23; 
+            IKernel kernel = InitializeKernel();
 
-            var logService = new LogService();
-            var warriorFactory = new WarriorFactory();
-            var logView = new LogView();
-            var guiView = new GuiView();
-            
-            var fightEngine = new FightEngine(logService);
-            var battleEngine = new BattleEngine(fightEngine, warriorFactory, logService, RedArmySize, BlueArmySize);
-            
-            var guiPresenter = new GuiPresenter(guiView, battleEngine);
-            guiPresenter.Initialize();
-            var logPresenter = new LogPresenter(logView, logService);
-            logPresenter.Initialize();
-
-            var application = new BattleApplication(guiPresenter, logPresenter);
+            var application = kernel.Get<BattleApplication>();
             application.Start();
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+
+        private static IKernel InitializeKernel()
+        {
+            NinjectModule module = new Module();
+            return new StandardKernel(module);
         }
     }
 }
