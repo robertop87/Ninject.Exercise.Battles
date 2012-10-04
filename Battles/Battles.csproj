@@ -47,6 +47,7 @@
     <Compile Include="FightEngine.cs" />
     <Compile Include="BattleEngine.cs" />
     <Compile Include="IFightEngine.cs" />
+    <Compile Include="IWarriorFactory.cs" />
     <Compile Include="Misc\EventArgs.cs" />
     <Compile Include="UI\GuiView.cs" />
     <Compile Include="UI\GuiPresenter.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="UI\LogView.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="WarriorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

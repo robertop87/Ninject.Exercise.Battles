@@ -14,6 +14,7 @@
         
         private readonly IFightEngine fightEngine;
         private readonly ILogService logger;
+        private readonly IWarriorFactory factory;
 
         private IEnumerable<IWarrior> redArmy;
         private IEnumerable<IWarrior> blueArmy;
@@ -22,6 +23,7 @@
         {
             this.fightEngine = new FightEngine();
             this.logger = LogService.Logger;
+            this.factory = new WarriorFactory();
 
             this.fightEngine.FightEvent += this.HandleFightEvent;
         }
@@ -96,15 +98,10 @@
             var army = new List<IWarrior>();
             for (int i = 1; i <= size; i++)
             {
-                 army.Add(this.CreateWarrior(faction, i));
+                 army.Add(this.factory.CreateWarrior(faction, i));
             }
 
             return army;
-        }
-
-        private IWarrior CreateWarrior(string faction, int i)
-        {
-            return new Ninja(faction, i);
         }
 
         private void ShowBattleResult()
