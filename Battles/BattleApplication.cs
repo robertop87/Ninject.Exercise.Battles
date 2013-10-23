@@ -7,13 +7,17 @@
         private readonly IGuiPresenter guiPresenter;
         private readonly ILogPresenter logPresenter;
 
+        public BattleApplication()
+        {
+        }
+
         public BattleApplication(IGuiPresenter guiPresenter, ILogPresenter logPresenter)
         {
             this.guiPresenter = guiPresenter;
             this.logPresenter = logPresenter;
         }
 
-        public void Start()
+        public virtual void Start()
         {
             this.guiPresenter.StartGame();
         }
