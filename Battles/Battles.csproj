@@ -60,6 +60,7 @@
     <Compile Include="BattleEngine.cs" />
     <Compile Include="IFightEngine.cs" />
     <Compile Include="IWarriorFactory.cs" />
+    <Compile Include="LoggingActivationStrategy.cs" />
     <Compile Include="Misc\EventArgs.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="UI\GuiView.cs" />
