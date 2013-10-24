@@ -12,6 +12,7 @@
             return this.Name;
         }
 
+        //[Log]
         public void Hit(IWarrior target)
         {
             target.GetsHit(this);

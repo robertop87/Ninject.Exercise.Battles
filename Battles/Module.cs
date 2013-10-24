@@ -65,6 +65,13 @@
 
             // **********************************************************************************************************
 
+            //this.Kernel.Bind<IWeapon>().To<Sword>();
+            //this.Kernel.Intercept(ctx => true).With<LoggingInterceptor>();
+
+            // enable LogAttribute on Sword.Hit(...)
+            
+            // **********************************************************************************************************
+
             this.Kernel.Bind<IWarrior>().To<Ninja>();
 
             this.Kernel.Bind(
