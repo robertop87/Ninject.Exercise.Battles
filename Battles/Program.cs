@@ -4,6 +4,7 @@
 
     using Ninject;
     using Ninject.Modules;
+    using Ninject.Planning.Bindings.Resolvers;
 
     public class Program
     {
@@ -21,7 +22,10 @@
         private static IKernel InitializeKernel()
         {
             NinjectModule module = new Module();
-            return new StandardKernel(module);
+            var kernel = new StandardKernel(module);
+
+            kernel.Components.Add<IMissingBindingResolver, WeaponMissingBindingResolver>();
+            return kernel;
         }
     }
 }
