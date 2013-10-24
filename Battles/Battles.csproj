@@ -62,6 +62,7 @@
     <Compile Include="IWarriorFactory.cs" />
     <Compile Include="Misc\EventArgs.cs" />
     <Compile Include="Module.cs" />
+    <Compile Include="TypeMatchingConstructorArgument.cs" />
     <Compile Include="UI\GuiView.cs" />
     <Compile Include="UI\GuiPresenter.cs" />
     <Compile Include="IBattleEngine.cs" />

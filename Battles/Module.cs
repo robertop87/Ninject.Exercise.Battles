@@ -18,7 +18,7 @@
                     .BindAllInterfaces()
                     .Configure(b => b.InSingletonScope()));
 
-            this.Kernel.Bind<IWeapon>().To<Sword>();
+            //this.Kernel.Bind<IWeapon>().To<Sword>();
             this.Kernel.Bind<IWarrior>().To<Ninja>();
 
             this.Kernel.Bind(
