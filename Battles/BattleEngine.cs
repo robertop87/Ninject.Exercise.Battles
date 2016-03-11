@@ -18,12 +18,15 @@
         private IEnumerable<IWarrior> redArmy;
         private IEnumerable<IWarrior> blueArmy;
 
-        public BattleEngine(IFightEngine fightEngine, ILogService logService, int redArmySize, int blueArmySize)
+        private IWarriorFactory warriorFactory;
+
+        public BattleEngine(IFightEngine fightEngine, ILogService logService, IWarriorFactory warriorFactory, int redArmySize, int blueArmySize)
         {
             this.fightEngine = fightEngine;
             this.logger = logService;
             this.RedArmySize = redArmySize;
             this.BlueArmySize = blueArmySize;
+            this.warriorFactory = warriorFactory;
 
             this.fightEngine.FightEvent += this.HandleFightEvent;
         }
@@ -98,7 +101,7 @@
             var army = new List<IWarrior>();
             for (int i = 1; i <= size; i++)
             {
-                var warrior = WarriorFactory.Create(WarriorType.Ninja, faction, i);
+                var warrior = warriorFactory.Create(WarriorType.Ninja, faction, i);
                 army.Add(warrior);
             }
 

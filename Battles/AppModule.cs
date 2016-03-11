@@ -1,6 +1,7 @@
 ﻿using Battles.Log;
 using Battles.Misc;
 using Battles.UI;
+using Ninject.Extensions.Factory;
 using Ninject.Modules;
 
 namespace Battles
@@ -15,7 +16,10 @@ namespace Battles
                 .WithConstructorArgument("blueArmySize", Constants.BlueArmySize);
 
             Bind<BattleApplication>().ToSelf();
-            Bind<WarriorFactory>().ToSelf().InSingletonScope();
+
+            Bind<IWarrior>().To<Ninja>();
+            Bind<IWeapon>().To<Sword>();
+            Bind<IWarriorFactory>().ToFactory();
 
             Bind<IView>().To<LogView>().WhenInjectedInto<LogPresenter>();
             Bind<IView>().To<GuiView>().WhenInjectedInto<GuiPresenter>();
