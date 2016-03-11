@@ -32,17 +32,17 @@
 
         public void PrepareBattle()
         {
-            Log("Armies are preparing");
+            Log(Constants.PreparingArmies);
 
-            redArmy = CreateArmy("Red", RedArmySize);
-            blueArmy = CreateArmy("Blue", BlueArmySize);
+            redArmy = CreateArmy(Constants.Red, RedArmySize);
+            blueArmy = CreateArmy(Constants.Blue, BlueArmySize);
 
-            Log("Armies are ready to fight");
+            Log(Constants.ArmiesReady);
         }
 
         public void StartBattle()
         {
-            Log("Battle started");
+            Log(Constants.BattleStarts);
 
             var redFighter = GetNextFighter(redArmy);
             var blueFighter = GetNextFighter(blueArmy);
@@ -55,7 +55,7 @@
                 blueFighter = GetNextFighter(blueArmy);
             }
 
-            Log("Battle ended");
+            Log(Constants.BattleEnds);
 
             ShowBattleResult();
         }
@@ -114,3 +114,4 @@
         }
     }
 }
+

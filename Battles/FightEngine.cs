@@ -19,7 +19,7 @@
 
         public void FightBetween(IWarrior redFighter, IWarrior blueFighter)
         {
-            Log("Fight started");
+            Log(Constants.FightStarts);
 
             bool redAttack = GetRandomBoolean();
 
@@ -39,11 +39,11 @@
 
             attacker.Attacks(defender);
 
-            var message = string.Format("{0} kills {1} with {2}", attacker, defender, attacker.Weapon);
+            var message = string.Format(Constants.AttackMessage, attacker, defender, attacker.Weapon);
             this.InvokeFightEvent(message);
             this.Log(message);
 
-            this.Log("Fight ended");
+            this.Log(Constants.FightEnds);
         }
 
         private bool GetRandomBoolean()

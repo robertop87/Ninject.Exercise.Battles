@@ -47,6 +47,7 @@
     <Compile Include="FightEngine.cs" />
     <Compile Include="BattleEngine.cs" />
     <Compile Include="IFightEngine.cs" />
+    <Compile Include="Misc\Constants.cs" />
     <Compile Include="Misc\EventArgs.cs" />
     <Compile Include="UI\GuiView.cs" />
     <Compile Include="UI\GuiPresenter.cs" />
