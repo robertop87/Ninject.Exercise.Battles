@@ -8,10 +8,10 @@
         private readonly IView view;
         private readonly ILogService logService;
 
-        public LogPresenter()
+        public LogPresenter(IView view, ILogService logService)
         {
-            this.view = new LogView();
-            this.logService = LogService.Logger;
+            this.view = view;
+            this.logService = logService;
         }
 
         public void Initialize()

@@ -5,10 +5,10 @@
         private readonly string faction;
         private readonly int id;
 
-        public Ninja(string faction, int id)
+        public Ninja(string faction, int id, IWeapon weapon)
         {
             this.Alive = true;
-            this.Weapon = new Sword();
+            this.Weapon = weapon;
             this.faction = faction;
             this.id = id;
         }

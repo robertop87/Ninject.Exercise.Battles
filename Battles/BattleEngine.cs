@@ -9,8 +9,8 @@
 
     public class BattleEngine : IBattleEngine
     {
-        private const int RedArmySize = 20;
-        private const int BlueArmySize = 23;
+        private readonly int RedArmySize;
+        private readonly int BlueArmySize;
         
         private readonly IFightEngine fightEngine;
         private readonly ILogService logger;
@@ -18,10 +18,12 @@
         private IEnumerable<IWarrior> redArmy;
         private IEnumerable<IWarrior> blueArmy;
 
-        public BattleEngine()
+        public BattleEngine(IFightEngine fightEngine, ILogService logService, int redArmySize, int blueArmySize)
         {
-            this.fightEngine = new FightEngine();
-            this.logger = LogService.Logger;
+            this.fightEngine = fightEngine;
+            this.logger = logService;
+            this.RedArmySize = redArmySize;
+            this.BlueArmySize = blueArmySize;
 
             this.fightEngine.FightEvent += this.HandleFightEvent;
         }
@@ -30,32 +32,32 @@
 
         public void PrepareBattle()
         {
-            this.Log("Armies are preparing");
-            
-            this.redArmy = this.CreateArmy("Red", RedArmySize);
-            this.blueArmy = this.CreateArmy("Blue", BlueArmySize);
-            
-            this.Log("Armies are ready to fight");
+            Log("Armies are preparing");
+
+            redArmy = CreateArmy("Red", RedArmySize);
+            blueArmy = CreateArmy("Blue", BlueArmySize);
+
+            Log("Armies are ready to fight");
         }
 
         public void StartBattle()
         {
-            this.Log("Battle started");
+            Log("Battle started");
 
-            var redFighter = GetNextFighter(this.redArmy);
-            var blueFighter = GetNextFighter(this.blueArmy);
+            var redFighter = GetNextFighter(redArmy);
+            var blueFighter = GetNextFighter(blueArmy);
 
             while (BothSidesHaveFighters(redFighter, blueFighter))
             {
-                this.fightEngine.FightBetween(redFighter, blueFighter);
+                fightEngine.FightBetween(redFighter, blueFighter);
 
-                redFighter = GetNextFighter(this.redArmy);
-                blueFighter = GetNextFighter(this.blueArmy);
+                redFighter = GetNextFighter(redArmy);
+                blueFighter = GetNextFighter(blueArmy);
             }
 
-            this.Log("Battle ended");
+            Log("Battle ended");
 
-            this.ShowBattleResult();
+            ShowBattleResult();
         }
 
         private static bool IsArmyDefeated(IEnumerable<IWarrior> army)
@@ -80,15 +82,15 @@
 
         private void InvokeBattleEvent(string message)
         {
-            if (this.BattleEvent != null)
+            if (BattleEvent != null)
             {
-                this.BattleEvent(this, new EventArgs<string>(message));
+                BattleEvent(this, new EventArgs<string>(message));
             }
         }
 
         private void Log(string text)
         {
-            this.logger.Log(text);
+            logger.Log(text);
         }
 
         private IEnumerable<IWarrior> CreateArmy(string faction, int size)
@@ -96,7 +98,7 @@
             var army = new List<IWarrior>();
             for (int i = 1; i <= size; i++)
             {
-                 army.Add(this.CreateWarrior(faction, i));
+                 army.Add(CreateWarrior(faction, i));
             }
 
             return army;
@@ -104,7 +106,7 @@
 
         private IWarrior CreateWarrior(string faction, int i)
         {
-            return new Ninja(faction, i);
+            return new Ninja(faction, i, new Sword());
         }
 
         private void ShowBattleResult()

@@ -1,4 +1,6 @@
-﻿namespace Battles
+﻿using Battles.Log;
+
+namespace Battles
 {
     using System;
 
@@ -8,7 +10,18 @@
     {
         public static void Main(string[] args)
         {
-            var application = new BattleApplication();
+            int redArmySize = 10;
+            int blueArmySize = 15;
+
+            ILogService logService = new LogService();
+
+            IView view = new GuiView();
+            IFightEngine fightEngine = new FightEngine(logService);
+            IBattleEngine battleEngine = new BattleEngine(fightEngine, logService, redArmySize, blueArmySize);
+            IGuiPresenter guiPresenter = new GuiPresenter(view, battleEngine);
+            ILogPresenter logPresenter = new LogPresenter(view, logService);
+
+            var application = new BattleApplication(guiPresenter, logPresenter);
             application.Start();
 
             Console.WriteLine("Press any key to exit");

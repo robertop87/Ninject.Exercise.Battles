@@ -2,26 +2,26 @@
 {
     using System;
 
-    using Battles.Log;
-    using Battles.Misc;
+    using Log;
+    using Misc;
 
     public class FightEngine : IFightEngine
     {
-        private readonly Random random = new Random();
-        private readonly ILogService logger;
+        private readonly Random _random = new Random();
+        private readonly ILogService _logger;
 
-        public FightEngine()
+        public FightEngine(ILogService logService)
         {
-            this.logger = LogService.Logger;
+            _logger = logService;
         }
 
         public event EventHandler<EventArgs<string>> FightEvent;
 
         public void FightBetween(IWarrior redFighter, IWarrior blueFighter)
         {
-            this.Log("Fight started");
+            Log("Fight started");
 
-            bool redAttack = this.GetRandomBoolean();
+            bool redAttack = GetRandomBoolean();
 
             IWarrior attacker;
             IWarrior defender;
@@ -48,20 +48,20 @@
 
         private bool GetRandomBoolean()
         {
-            return Convert.ToBoolean(this.random.Next(0, 2));
+            return Convert.ToBoolean(this._random.Next(0, 2));
         }
 
         private void InvokeFightEvent(string message)
         {
-            if (this.FightEvent != null)
+            if (FightEvent != null)
             {
-                this.FightEvent(this, new EventArgs<string>(message));
+                FightEvent(this, new EventArgs<string>(message));
             }
         }
 
         private void Log(string text)
         {
-            this.logger.Log(text);
+            _logger.Log(text);
         }
     }
 }

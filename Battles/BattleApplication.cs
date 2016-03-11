@@ -4,21 +4,21 @@
 
     public class BattleApplication
     {
-        private readonly IGuiPresenter guiPresenter;
-        private readonly ILogPresenter logPresenter;
+        private readonly IGuiPresenter _guiPresenter;
+        private readonly ILogPresenter _logPresenter;
 
-        public BattleApplication()
+        public BattleApplication(IGuiPresenter guiPresenter, ILogPresenter logPresenter)
         {
-            this.guiPresenter = new GuiPresenter();
-            this.guiPresenter.Initialize();
+            _guiPresenter = guiPresenter;
+            _guiPresenter.Initialize();
 
-            this.logPresenter = new LogPresenter();
-            this.logPresenter.Initialize();
+            _logPresenter = logPresenter;
+            _logPresenter.Initialize();
         }
 
         public void Start()
         {
-            this.guiPresenter.StartGame();
+            this._guiPresenter.StartGame();
         }
     }
 }
