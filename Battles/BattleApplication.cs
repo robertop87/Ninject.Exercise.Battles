@@ -1,6 +1,6 @@
 ﻿namespace Battles
 {
-    using Battles.UI;
+    using UI;
 
     public class BattleApplication
     {
@@ -10,15 +10,12 @@
         public BattleApplication(IGuiPresenter guiPresenter, ILogPresenter logPresenter)
         {
             _guiPresenter = guiPresenter;
-            _guiPresenter.Initialize();
-
             _logPresenter = logPresenter;
-            _logPresenter.Initialize();
         }
 
         public void Start()
         {
-            this._guiPresenter.StartGame();
+            _guiPresenter.StartGame();
         }
     }
 }

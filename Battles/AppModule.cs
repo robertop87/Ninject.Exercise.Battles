@@ -20,10 +20,11 @@ namespace Battles
             Bind<IView>().To<LogView>().WhenInjectedInto<LogPresenter>();
             Bind<IView>().To<GuiView>().WhenInjectedInto<GuiPresenter>();
 
-            Bind<ILogPresenter>().To<LogPresenter>().OnActivation(p => p.Initialize());
-            Bind<IGuiPresenter>().To<GuiPresenter>().OnActivation(p => p.Initialize());
+            Bind<ILogPresenter>().To<LogPresenter>().OnActivation(logPresenter => logPresenter.Initialize());
+            Bind<IGuiPresenter>().To<GuiPresenter>().OnActivation(guiPresenter => guiPresenter.Initialize());
 
             Bind<ILogService>().To<LogService>().InSingletonScope();
         }
     }
 }
+
