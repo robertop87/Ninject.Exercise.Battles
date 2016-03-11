@@ -2,7 +2,7 @@
 {
     using System;
 
-    using Battles.Misc;
+    using Misc;
 
     public interface IBattleEngine
     {

@@ -4,29 +4,29 @@
 
     public class GuiPresenter : IGuiPresenter
     {
-        private readonly IView view;
-        private readonly IBattleEngine battleEngine;
+        private readonly IView _view;
+        private readonly IBattleEngine _battleEngine;
 
         public GuiPresenter(IView view, IBattleEngine battleEngine)
         {
-            this.view = view;
-            this.battleEngine = battleEngine;
+            _view = view;
+            _battleEngine = battleEngine;
         }
 
         public void Initialize()
         {
-            this.battleEngine.BattleEvent += this.HandleBattleEvent;
-            this.battleEngine.PrepareBattle();
+            _battleEngine.BattleEvent += HandleBattleEvent;
+            _battleEngine.PrepareBattle();
         }
 
         public void StartGame()
         {
-            this.battleEngine.StartBattle();
+            _battleEngine.StartBattle();
         }
 
         private void HandleBattleEvent(object sender, EventArgs<string> e)
         {
-            this.view.AddText(e.Value);
+            _view.AddText(e.Value);
         }
     }
 }

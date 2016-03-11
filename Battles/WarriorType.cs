@@ -2,6 +2,7 @@
 {
     public enum WarriorType
     {
-        Ninja
+        Ninja, Samurai
     }
 }
+

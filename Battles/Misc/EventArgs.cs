@@ -4,16 +4,11 @@
 
     public class EventArgs<T> : EventArgs
     {
-        private readonly T value;
-
         public EventArgs(T value)
         {
-            this.value = value;
+            this.Value = value;
         }
 
-        public T Value
-        {
-            get { return this.value; }
-        }
+        public T Value { get; }
     }
 }

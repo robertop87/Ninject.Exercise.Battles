@@ -7,12 +7,13 @@
 
     public class FightEngine : IFightEngine
     {
-        private readonly Random _random = new Random();
+        private readonly Random _random;
         private readonly ILogService _logger;
 
         public FightEngine(ILogService logService)
         {
             _logger = logService;
+            _random = new Random();
         }
 
         public event EventHandler<EventArgs<string>> FightEvent;
@@ -40,23 +41,20 @@
             attacker.Attacks(defender);
 
             var message = string.Format(Constants.AttackMessage, attacker, defender, attacker.Weapon);
-            this.InvokeFightEvent(message);
-            this.Log(message);
+            InvokeFightEvent(message);
+            Log(message);
 
-            this.Log(Constants.FightEnds);
+            Log(Constants.FightEnds);
         }
 
         private bool GetRandomBoolean()
         {
-            return Convert.ToBoolean(this._random.Next(0, 2));
+            return Convert.ToBoolean(_random.Next(0, 2));
         }
 
         private void InvokeFightEvent(string message)
         {
-            if (FightEvent != null)
-            {
-                FightEvent(this, new EventArgs<string>(message));
-            }
+            FightEvent?.Invoke(this, new EventArgs<string>(message));
         }
 
         private void Log(string text)

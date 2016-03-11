@@ -1,6 +1,4 @@
 ﻿namespace Battles.UI
 {
-    public interface ILogPresenter : IPresenter
-    {
-    }
+    public interface ILogPresenter : IPresenter { }
 }

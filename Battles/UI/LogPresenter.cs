@@ -1,27 +1,27 @@
 ﻿namespace Battles.UI
 {
-    using Battles.Log;
-    using Battles.Misc;
+    using Log;
+    using Misc;
 
     public class LogPresenter : ILogPresenter
     {
-        private readonly IView view;
-        private readonly ILogService logService;
+        private readonly IView _view;
+        private readonly ILogService _logService;
 
         public LogPresenter(IView view, ILogService logService)
         {
-            this.view = view;
-            this.logService = logService;
+            _view = view;
+            _logService = logService;
         }
 
         public void Initialize()
         {
-            this.logService.LogEvent += this.HandleLogEvent;
+            _logService.LogEvent += HandleLogEvent;
         }
 
         private void HandleLogEvent(object sender, EventArgs<string> e)
         {
-            this.view.AddText(e.Value);
+            _view.AddText(e.Value);
         }
     }
 }

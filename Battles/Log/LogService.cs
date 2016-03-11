@@ -10,10 +10,7 @@
 
         public void Log(string logEntry)
         {
-            if (LogEvent != null)
-            {
-                LogEvent(this, new EventArgs<string>(logEntry));
-            }
+            LogEvent?.Invoke(this, new EventArgs<string>(logEntry));
         }
     }
 }

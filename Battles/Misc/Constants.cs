@@ -14,9 +14,11 @@
         public const string FightStarts = "Fight started";
         public const string FightEnds = "Fight ended";
         public const string AttackMessage = "{0} kills {1} with {2}";
+        public const string WinMessage = "{0} won";
 
         public const string Red = "Red";
         public const string Blue = "Blue";
 
+        public const string LogFileName = "Battle.log";
     }
 }

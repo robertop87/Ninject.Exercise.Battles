@@ -1,8 +1,7 @@
 ﻿namespace Battles.Log
 {
     using System;
-
-    using Battles.Misc;
+    using Misc;
 
     public interface ILogService
     {

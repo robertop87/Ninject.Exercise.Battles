@@ -2,7 +2,7 @@ namespace Battles
 {
     using System;
 
-    using Battles.Misc;
+    using Misc;
 
     public interface IFightEngine
     {
