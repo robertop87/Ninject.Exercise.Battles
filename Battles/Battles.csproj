@@ -69,6 +69,8 @@
     <Compile Include="UI\LogView.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="WarriorFactory.cs" />
+    <Compile Include="WarriorType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

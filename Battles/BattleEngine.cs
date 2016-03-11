@@ -98,15 +98,11 @@
             var army = new List<IWarrior>();
             for (int i = 1; i <= size; i++)
             {
-                 army.Add(CreateWarrior(faction, i));
+                var warrior = WarriorFactory.Create(WarriorType.Ninja, faction, i);
+                army.Add(warrior);
             }
 
             return army;
-        }
-
-        private IWarrior CreateWarrior(string faction, int i)
-        {
-            return new Ninja(faction, i, new Sword());
         }
 
         private void ShowBattleResult()
